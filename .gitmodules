@@ -1,0 +1,3 @@
+[submodule "gps-landmark-correlation-app"]
+	path = gps-landmark-correlation-app
+	url = ./gps-landmark-correlation-app
