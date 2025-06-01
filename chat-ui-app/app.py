@@ -34,8 +34,9 @@ def send_message():
     return jsonify(response)
 
 def query_nearby_places(latitude, longitude, landmark_type_filter, search_keywords):
-    inference_url = os.environ.get('API_ENDPOINT')
-    api_key = os.environ.get('API_KEY')
+    inference_url = os.environ.get('API_ENDPOINT_TOOL_CALLS')
+    api_key = os.environ.get('API_KEY_TOOL_CALLS')
+    model = os.environ.get('MODEL_TOOL_CALLS')
     
     headers = {
         "Content-Type": "application/json",
@@ -43,7 +44,7 @@ def query_nearby_places(latitude, longitude, landmark_type_filter, search_keywor
     }
     
     data = {
-        "model": "llama3",
+        "model": model,
         "messages": [
             {
                 "role": "user",
