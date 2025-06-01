@@ -40,7 +40,7 @@ const App = () => {
 
   return (
     <div style={{ height: '100vh', width: '100vw' }}>
-      <APIProvider apiKey={'YOUR_API_KEY'} onLoad={() => console.log('Maps API has loaded.')}>
+      <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} onLoad={() => console.log('Maps API has loaded.')}>
         <Map
           defaultZoom={13}
           defaultCenter={{ lat: 40.7128, lng: -74.0060 }}
@@ -57,7 +57,12 @@ const App = () => {
   );
 };
 
-const root = createRoot(document.getElementById('app'));
-root.render(<App />);
+const appElement = document.getElementById('app');
+if (appElement) {
+  const root = createRoot(appElement);
+  root.render(<App />);
+} else {
+  console.error('Failed to find the app element');
+}
 
 export default App;
