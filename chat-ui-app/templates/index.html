@@ -62,6 +62,27 @@
                 chatLog.appendChild(botResponse);
             });
         }
+
+        // Add this function to send a request every 30 seconds
+        setInterval(() => {
+            const landmarkTypeFilter = document.getElementById("landmark-type-filter").value;
+            const searchKeywords = document.getElementById("search-keywords").value;
+
+            fetch("/send_message", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ landmarkTypeFilter: landmarkTypeFilter, searchKeywords: searchKeywords })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botResponse = document.createElement("div");
+                botResponse.classList.add("message");
+                botResponse.textContent = `Bot: ${data.response}`;
+                document.getElementById("chat-log").appendChild(botResponse);
+            });
+        }, 30000); // 30 seconds
     </script>
 </body>
 </html>
