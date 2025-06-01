@@ -1,0 +1,17 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@googlemaps/markerclusterer": "^2.5.1",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "@vis.gl/react-google-maps": "latest",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^5.0.4"
+  },
+  "scripts": {
+    "start": "vite",
+    "start-local": "vite --config ./vite.config.local.js",
+    "build": "vite build"
+  }
+}
