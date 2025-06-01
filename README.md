@@ -18,3 +18,6 @@ The Chat UI App is a project that provides a user interface for interacting with
 
 ## Contact
 For more information, contact Devin J. Dawson (unclemusclez) at discord.waterpistol.co.
+## Warning: JavaScript is Doodoosauce
+
+We refuse to conform to the JavaScript frontend. Python and Streamlit is our preferred choice.
