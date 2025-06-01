@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #chat-container {
+            width: 400px;
+            height: 600px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .user-message {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-log"></div>
+        <select id="landmark-type-filter">
+            <option value="">All</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Park">Park</option>
+            <!-- Add more options as needed -->
+        </select>
+        <input type="text" id="search-keywords" placeholder="Search keywords...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const landmarkTypeFilter = document.getElementById("landmark-type-filter").value;
+            const searchKeywords = document.getElementById("search-keywords").value;
+
+            const chatLog = document.getElementById("chat-log");
+            const userMessage = document.createElement("div");
+            userMessage.classList.add("message", "user-message");
+            userMessage.textContent = `You: Filter=${landmarkTypeFilter}, Search=${searchKeywords}`;
+            chatLog.appendChild(userMessage);
+
+            fetch("/send_message", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ landmarkTypeFilter: landmarkTypeFilter, searchKeywords: searchKeywords })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botResponse = document.createElement("div");
+                botResponse.classList.add("message");
+                botResponse.textContent = `Bot: ${data.response}`;
+                chatLog.appendChild(botResponse);
+            });
+        }
+    </script>
+</body>
+</html>
