@@ -43,20 +43,20 @@ def query_nearby_places(latitude, longitude, landmark_type_filter, search_keywor
     }
     
     data = {
-        "inputs": [
+        "model": "llama3",
+        "messages": [
             {
-                "name": "user_query",
-                "shape": [1],
-                "data": [f"Find nearby {landmark_type_filter} at latitude {latitude} and longitude {longitude}"],
-                "datatype": "BYTES"
+                "role": "user",
+                "content": f"Find nearby {landmark_type_filter} at latitude {latitude} and longitude {longitude}"
             }
         ]
     }
     
     response = requests.post(inference_url, headers=headers, json=data)
+    print(f"API call status code: {response.status_code}")
+    print(f"API call response: {response.text}")
     if response.status_code == 200:
         result = response.json()
-        # Process the result to extract nearby places
         return result
     else:
         return ["Failed to retrieve data"]
