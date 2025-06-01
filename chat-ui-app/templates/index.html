@@ -26,6 +26,8 @@
 <body>
     <div id="chat-container">
         <div id="chat-log"></div>
+        <div id="gps-coordinates"></div>
+        <div id="nearby-places"></div>
         <select id="landmark-type-filter">
             <option value="">All</option>
             <option value="Restaurant">Restaurant</option>
@@ -35,6 +37,29 @@
         <input type="text" id="search-keywords" placeholder="Search keywords...">
         <button onclick="sendMessage()">Send</button>
     </div>
+
+    <script>
+        // Function to update GPS coordinates
+        function updateGPSCoordinates(latitude, longitude) {
+            const gpsCoordinatesDiv = document.getElementById("gps-coordinates");
+            gpsCoordinatesDiv.innerText = `GPS Coordinates: Latitude = ${latitude}, Longitude = ${longitude}`;
+        }
+
+        // Function to update nearby places
+        function updateNearbyPlaces(places) {
+            const nearbyPlacesDiv = document.getElementById("nearby-places");
+            nearbyPlacesDiv.innerHTML = "<h3>Nearby Places:</h3>";
+            places.forEach(place => {
+                const placeElement = document.createElement("div");
+                placeElement.innerText = place;
+                nearbyPlacesDiv.appendChild(placeElement);
+            });
+        }
+
+        // Example usage
+        updateGPSCoordinates(40.7128, -74.0060);
+        updateNearbyPlaces(["Place 1", "Place 2", "Place 3"]);
+    </script>
 
     <script>
         function sendMessage() {
