@@ -26,4 +26,4 @@ Contributions to the NYC Mobile Tour Guide project are welcome. Please refer to 
 
 ## License
 
-This project is licensed under the [License Name]. See the LICENSE file for details.
+This project is licensed under the GNU GENERAL PUBLIC LICENSE. See the LICENSE file for details.
