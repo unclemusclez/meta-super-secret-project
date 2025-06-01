@@ -16,6 +16,7 @@
 
 import React from 'react';
 import { createRoot } from "react-dom/client";
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
 
 const App = () => {
   const [narrativeContent, setNarrativeContent] = React.useState('');
@@ -38,9 +39,20 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Narrative Content</h1>
-      <p>{narrativeContent}</p>
+    <div style={{ height: '100vh', width: '100vw' }}>
+      <APIProvider apiKey={'YOUR_API_KEY'} onLoad={() => console.log('Maps API has loaded.')}>
+        <Map
+          defaultZoom={13}
+          defaultCenter={{ lat: 40.7128, lng: -74.0060 }}
+          mapId='DEMO_MAP_ID'
+        >
+          {/* You can add markers or other map components here */}
+        </Map>
+      </APIProvider>
+      <div style={{ position: 'absolute', top: '10px', left: '10px', backgroundColor: 'white', padding: '10px', borderRadius: '5px' }}>
+        <h1>Narrative Content</h1>
+        <p>{narrativeContent}</p>
+      </div>
     </div>
   );
 };

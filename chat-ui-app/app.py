@@ -8,6 +8,12 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route("/narrative-content", methods=["GET"])
+def narrative_content():
+    # Example narrative content
+    narrative = "This is an example narrative content about nearby landmarks."
+    return jsonify({"narrative": narrative})
+
 @app.route("/send_message", methods=["POST"])
 def send_message():
     data = request.json
@@ -28,7 +34,7 @@ def send_message():
     return jsonify(response)
 
 def query_nearby_places(latitude, longitude, landmark_type_filter, search_keywords):
-    inference_url = os.environ.get('INFERENCE_URL')
+    inference_url = os.environ.get('API_ENDPOINT')
     api_key = os.environ.get('API_KEY')
     
     headers = {
